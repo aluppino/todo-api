@@ -12,7 +12,12 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
-				len: [7, 100]
+				len: [7, 100],
+				isString: function(value) {
+					if (typeof value !== 'string') {
+						throw new Error('\'description\' must be a string.');
+					}
+				}
 			}
 		}
 	});

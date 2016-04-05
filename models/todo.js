@@ -4,12 +4,24 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
-				len: [1, 250]
+				len: [1, 250],
+				isString: function(value) {
+					if (typeof value !== 'string') {
+						throw new Error('\'description\' must be a string.');
+					}
+				}
 			}
 		},
 		completed: {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
+			validate: {
+				isBoolean: function(value) {
+					if (typeof value !== 'boolean') {
+						throw new Error('\'completed\' must be a boolean.');
+					}
+				}
+			},
 			defaultValue: false
 		}
 	});
